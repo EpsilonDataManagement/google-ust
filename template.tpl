@@ -1,3 +1,11 @@
+﻿___TERMS_OF_SERVICE___
+
+By creating or modifying this file you agree to Google Tag Manager's Community
+Template Gallery Developer Terms of Service available at
+https://developers.google.com/tag-manager/gallery-tos (or such other URL as
+Google may provide), as modified from time to time.
+
+
 ___INFO___
 
 {
@@ -6,7 +14,7 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "Epsilon Site Tag",
-  "categories": ["ADVERTISING", "ATTRIBUTION", "PERSONALIZATION"],
+  "categories": ["CONVERSIONS", "MARKETING", "ATTRIBUTION"],
   "brand": {
     "id": "brand_dummy",
     "displayName": "",
@@ -37,24 +45,21 @@ ___TEMPLATE_PARAMETERS___
           {
             "type": "TEXT",
             "name": "host",
-            "displayName": "Your website domain",
+            "displayName": "Domain",
             "simpleValueType": true,
-            "defaultValue": "{{Page Hostname}}",
-            "help": "The advertiser\u0027s domain. Ex.",
+            "help": "The hostname the advertiser is using for the tag. Ex. tag.brandco.com",
             "valueValidators": [
               {
                 "type": "NON_EMPTY"
               }
-            ],
-            "valueHint": "www.brandco.com"
+            ]
           },
           {
             "type": "TEXT",
             "name": "tagPath",
             "displayName": "Reverse Proxy Directory Path",
             "simpleValueType": true,
-            "help": "The directory path of the Reverse Proxy. If you are not using a Reverse Proxy integration, leave this field blank.  If you are using a Reverse Proxy, enter the path of the Reverse Proxy (typically /tag_path or the custom path you have setup as the root of your Reverse Proxy).",
-            "valueHint": "/tag_path"
+            "help": "The directory path of the Reverse Proxy. If you are not using a Reverse Proxy integration, leave this field blank.  If you are using a Reverse Proxy, enter the path of the Reverse Proxy (typically /tag_path or the custom path you have setup as the root of your Reverse Proxy)."
           }
         ]
       },
@@ -68,8 +73,7 @@ ___TEMPLATE_PARAMETERS___
             "name": "dtm_cid",
             "displayName": "Company ID (dtm_cid)",
             "simpleValueType": true,
-            "help": "Advertiser identifier",
-            "valueHint": "12345",
+            "help": "Advertiser identifier.",
             "valueValidators": [
               {
                 "type": "NON_EMPTY"
@@ -84,13 +88,12 @@ ___TEMPLATE_PARAMETERS___
             "name": "dtm_cmagic",
             "displayName": "Company Magic (dtm_cmagic)",
             "simpleValueType": true,
-            "help": "Secondary Company ID",
+            "help": "Secondary advertiser identifier.",
             "valueValidators": [
               {
                 "type": "NON_EMPTY"
               }
-            ],
-            "valueHint": "827ccb"
+            ]
           }
         ],
         "groupStyle": "ZIPPY_OPEN"
@@ -106,7 +109,7 @@ ___TEMPLATE_PARAMETERS___
             "name": "dtm_fid",
             "displayName": "Form ID (dtm_fid)",
             "simpleValueType": true,
-            "help": "Form identifier - Ex. 101",
+            "help": "Form identifier. Ex. 101",
             "valueValidators": [
               {
                 "type": "NON_EMPTY"
@@ -114,16 +117,43 @@ ___TEMPLATE_PARAMETERS___
               {
                 "type": "POSITIVE_NUMBER"
               }
-            ],
-            "valueHint": "101"
+            ]
           },
           {
             "type": "TEXT",
             "name": "dtm_promo_id",
             "displayName": "Promo ID (dtm_promo_id)",
             "simpleValueType": true,
-            "help": "Value that identifies the page type",
-            "valueHint": "1"
+            "help": "Value that identifies the page type."
+          },
+          {
+            "type": "TEXT",
+            "name": "dtm_email_hash",
+            "displayName": "Email Hash (dtm_email_hash)",
+            "simpleValueType": true,
+            "help": "SHA-256 hash of customer’s email address. *Remove leading/trailing spaces and convert email address to lowercase before hashing."
+          },
+          {
+            "type": "TEXT",
+            "name": "dtm_user_id",
+            "displayName": "User ID (dtm_user_id)",
+            "simpleValueType": true,
+            "help": "Unique identifier."
+          },
+          {
+            "type": "TEXT",
+            "name": "dtmc_tcf_string",
+            "displayName": "Consent String",
+            "simpleValueType": true,
+            "help": "GDPR consent string."
+          },
+          {
+            "type": "TEXT",
+            "name": "customParameters",
+            "displayName": "Custom Parameters",
+            "simpleValueType": true,
+            "enablingConditions": [],
+            "help": "Additional custom parameters to be added if advised by Epsilon to be added at the end of the query string. Ex. custom_key1\u003dvalue1\u0026custom_key2\u003dvalue2"
           }
         ]
       },
@@ -172,21 +202,8 @@ ___TEMPLATE_PARAMETERS___
                 "type": "EQUALS"
               }
             ],
-            "defaultValue": 0
-          },
-          {
-            "type": "TEXT",
-            "name": "additionalParameters",
-            "displayName": "Additional Parameters",
-            "simpleValueType": true,
-            "enablingConditions": [
-              {
-                "paramName": "enableAdvanced",
-                "paramValue": 1,
-                "type": "EQUALS"
-              }
-            ],
-            "help": "Custom query parameters Ex. custom_key1\u003dvalue1\u0026custom_key2\u003dvalue2"
+            "defaultValue": 0,
+            "help": "Limited integrations should only be used if specified by Epsilon."
           }
         ]
       }
@@ -194,32 +211,15 @@ ___TEMPLATE_PARAMETERS___
   },
   {
     "type": "GROUP",
-    "name": "dataObjectProperties",
-    "displayName": "Data Object Properties",
+    "name": "pageVisitProperties",
+    "displayName": "Page Visit Properties",
     "groupStyle": "ZIPPY_CLOSED",
     "subParams": [
-      {
-        "type": "TEXT",
-        "name": "dtm_email_hash",
-        "displayName": "Email Hash Value (dtm_email_hash)",
-        "simpleValueType": true,
-        "help": "SHA-256 hash of customer’s email address. *Remove leading/trailing spaces and convert email address to lowercase before hashing.",
-        "valueHint": "[SHA-256_Email_Hash]"
-      },
-      {
-        "type": "TEXT",
-        "name": "dtm_user_id",
-        "displayName": "User Id (dtm_user_id)",
-        "simpleValueType": true,
-        "valueHint": "1234abc",
-        "help": "Unique identifier"
-      },
       {
         "type": "TEXT",
         "name": "dtmc_department",
         "displayName": "Department (dtmc_department)",
         "simpleValueType": true,
-        "valueHint": "men",
         "help": "The department name for the current page. (Men, Women, Children, etc.)"
       },
       {
@@ -227,96 +227,92 @@ ___TEMPLATE_PARAMETERS___
         "name": "dtmc_category",
         "displayName": "Category (dtmc_category)",
         "simpleValueType": true,
-        "help": "The category name for the current page. (Clothing, Accessories, etc.)",
-        "valueHint": "tops"
+        "help": "The category name for the current page. (Clothing, Accessories, etc.)"
       },
       {
         "type": "TEXT",
         "name": "dtmc_sub_category",
         "displayName": "Subcategory (dtmc_sub_category)",
         "simpleValueType": true,
-        "help": "The subcategory name for the current page. (Sweaters, Tops, Bottoms, etc.)",
-        "valueHint": "tshirts"
-      },
-      {
-        "type": "TEXT",
-        "name": "dtmc_product_id",
-        "displayName": "Product ID (dtmc_product_id)",
-        "simpleValueType": true,
-        "valueHint": "sku1234",
-        "help": "Product ID for current product"
+        "help": "The subcategory name for the current page. (Sweaters, Tops, Bottoms, etc.)"
       },
       {
         "type": "TEXT",
         "name": "dtmc_brand",
         "displayName": "Brand (dtmc_brand)",
         "simpleValueType": true,
-        "valueHint": "nike",
-        "help": "Manufacturer brand"
+        "help": "Manufacturer brand."
+      },
+      {
+        "type": "TEXT",
+        "name": "dtmc_product_id",
+        "displayName": "Product ID (dtmc_product_id)",
+        "simpleValueType": true,
+        "help": "Product ID for current product."
       },
       {
         "type": "TEXT",
         "name": "dtmc_upc",
         "displayName": "UPC (dtmc_upc)",
         "simpleValueType": true,
-        "help": "Manufacturer UPC code",
-        "valueHint": "B123"
+        "help": "Manufacturer UPC code."
       },
       {
         "type": "TEXT",
         "name": "dtmc_mpn",
         "displayName": "Model Part Number (dtmc_mpn)",
         "simpleValueType": true,
-        "valueHint": "X123",
-        "help": "Manufacturer Model Part Number"
-      },
+        "help": "Manufacturer Model Part Number."
+      }
+    ]
+  },
+  {
+    "type": "GROUP",
+    "name": "conversionProperties",
+    "displayName": "Conversion Properties",
+    "groupStyle": "ZIPPY_CLOSED",
+    "subParams": [
       {
         "type": "TEXT",
         "name": "dtmc_transaction_id",
         "displayName": "Transaction ID (dtmc_transaction_id)",
         "simpleValueType": true,
-        "help": "Client system\u0027s unique identifier for each conversion",
-        "valueHint": "123456789"
+        "help": "Client system\u0027s unique identifier for each conversion."
       },
       {
         "type": "TEXT",
         "name": "dtm_conv_val",
         "displayName": "Conversion Value (dtm_conv_val)",
         "simpleValueType": true,
-        "valueHint": "45.95",
-        "help": "Conversion value"
+        "help": "Conversion value."
       },
       {
         "type": "TEXT",
         "name": "dtm_conv_curr",
         "displayName": "Conversion Currency (dtm_conv_curr)",
         "simpleValueType": true,
-        "valueHint": "USD",
-        "help": "ISO currency code (EUR, USD)"
+        "help": "ISO currency code (EUR, USD)."
       },
       {
         "type": "TEXT",
         "name": "dtmc_conv_type",
         "displayName": "Conversion Type (dtmc_conv_type)",
         "simpleValueType": true,
-        "help": "Differentiate between types of Online Purchases: Delivery, Pickup, etc.",
-        "valueHint": "Pickup"
+        "help": "Differentiate between types of Online Purchases: Delivery, Pickup, etc."
       },
       {
         "type": "TEXT",
         "name": "dtmc_conv_store_location",
         "displayName": "Conversion Store Location (dtmc_conv_store_location)",
         "simpleValueType": true,
-        "help": "For Pickup type conversions, denote the store location of the pickup",
-        "valueHint": "Chicago"
+        "help": "For Pickup type conversions, denote the store location of the pickup."
       },
       {
         "type": "TEXT",
         "name": "dtm_items",
-        "displayName": "Item Array (dtm_items)",
+        "displayName": "Items (dtm_items)",
         "simpleValueType": true,
         "help": "An array of all items in the conversion. Each item should include the following: product_id: SKU of the item;",
-        "valueHint": "[{\"product_id\":\"a123\",\"item_amount\":\"15.95\",\"item_quantity\":\"1\",\"item_discount\":\"0\"}]",
         "textAsList": false
       }
     ]
@@ -336,13 +332,15 @@ const encodeUriComponent = require('encodeUriComponent');
 const getContainerVersion = require('getContainerVersion');
 const queryPermission = require('queryPermission');
 const getTimestampMillis = require('getTimestampMillis');
+const getUrl = require('getUrl');
 
 // Declare Variables
 let baseURL = 'https://' + data.host;
-const allowedQueryParameters = ['dtm_cid', 'dtm_cmagic', 'dtm_fid', 'dtm_promo_id', 'dtm_email_hash', 'dtm_user_id', 'dtmc_department', 'dtmc_category', 'dtmc_sub_category', 'dtmc_product_id', 'dtmc_brand', 'dtmc_upc', 'dtmc_mpn', 'dtmc_transaction_id', 'dtm_conv_val', 'dtm_conv_curr', 'dtmc_conv_type', 'dtmc_conv_store_location', 'dtm_items'];
+const allowedQueryParameters = ['dtm_cid', 'dtm_cmagic', 'dtm_fid', 'dtm_promo_id', 'dtm_email_hash', 'dtm_user_id', 'dtmc_department', 'dtmc_category', 'dtmc_sub_category', 'dtmc_product_id', 'dtmc_brand', 'dtmc_upc', 'dtmc_mpn', 'dtmc_transaction_id', 'dtm_conv_val', 'dtm_conv_curr', 'dtmc_conv_type', 'dtmc_conv_store_location', 'dtm_items', 'dtmc_tcf_string'];
 
 const cv = getContainerVersion();
-const cachebusterValue = cv.containerId + '+' + cv.version + '+' + getTimestampMillis();
+const cachebusterValue = cv.containerId + '-' + cv.version + '-' + getTimestampMillis();
+const pageUrl = getUrl();
 let queryStringParameters;
 let dtmToken;
 let dtmTokenSC;
@@ -369,8 +367,8 @@ if (integrationType(data.tagPath)) {
 //Assigning query string parameters
 Object.entries(data).forEach(dataEntries => {
     if (allowedQueryParameters.indexOf(dataEntries[0]) >= 0 && dataEntries[1]) {
-      if (dataEntries[0] === "dtm_items") {
-        dataEntries[1] = JSON.stringify(dataEntries[1]);
+      if (dataEntries[0] === 'dtm_items') {
+        dataEntries[1] = JSON.stringify(dataEntries[1]).replace();
       }
       
       if (queryStringParameters  === undefined) {
@@ -390,11 +388,16 @@ log('dtm_token_sc: ', dtmTokenSC);
 
 if (dtmToken.length > 0) {
   queryStringParameters += '&dtm_token=' + dtmToken[0];
+} else if (dtmTokenSC.length > 0) {
+  queryStringParameters += '&dtm_token=' + dtmTokenSC[0];
 }
+
 if (dtmTokenSC.length > 0) {
   queryStringParameters += '&dtm_token_sc=' + dtmTokenSC[0];
 }
 
+// dtmc_loc
+queryStringParameters += '&dtmc_loc=' + encodeUriComponent(pageUrl);
 
 //Populating dtmc_tms query parameter
 queryStringParameters += '&dtmc_tms=4';
@@ -403,8 +406,8 @@ queryStringParameters += '&dtmc_tms=4';
 queryStringParameters += '&cachebuster=' + cachebusterValue;
 
 //Populating Additional query parameters
-if (data.additionalParameters) {
-  queryStringParameters += '&' + data.additionalParameters;
+if (data.customParameters) {
+  queryStringParameters += '&' + data.customParameters;
 }
 
 log('queryParameters = ', queryStringParameters);
@@ -495,10 +498,6 @@ ___WEB_PERMISSIONS___
               {
                 "type": 1,
                 "string": "https://*.dotomi.com/*"
-              },
-              {
-                "type": 1,
-                "string": "https://*.cnvrm.com/*"
               }
             ]
           }
@@ -540,6 +539,31 @@ ___WEB_PERMISSIONS___
       "isEditedByUser": true
     },
     "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "get_url",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "urlParts",
+          "value": {
+            "type": 1,
+            "string": "any"
+          }
+        },
+        {
+          "key": "queriesAllowed",
+          "value": {
+            "type": 1,
+            "string": "any"
+          }
+        }
+      ]
+    },
+    "isRequired": true
   }
 ]
 
@@ -551,6 +575,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 8/2/2022, 4:32:41 PM
+Created on 11/29/2022, 2:32:00 PM
 
 
