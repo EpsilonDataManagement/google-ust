@@ -15,5 +15,9 @@
 homepage: "https://www.epsilon.com"
 documentation: "https://www.epsilon.com"
 versions:
+  # Latest version
+  - sha: fa63ef00efcc6e7b8b5bff45b9c2f814315ac87e
+    changeNotes: Update logo and ui enhancements related to variables 
+  # Older versions
   - sha: 3b4dc17af1657e1d7bd8430546e51859e406f195
     changeNotes: Initial Version
