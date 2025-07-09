@@ -225,6 +225,24 @@ ___TEMPLATE_PARAMETERS___
           },
           {
             "type": "RADIO",
+            "name": "enableEpsilonRP",
+            "displayName": "Epsilon-RP PHP Integration",
+            "radioItems": [
+              {
+                "value": 0,
+                "displayValue": "Disabled"
+              },
+              {
+                "value": 1,
+                "displayValue": "Enabled"
+              }
+            ],
+            "simpleValueType": true,
+            "defaultValue": 0,
+            "help": "Epsilon-RP is a specialized integration that utilizes a PHP file as a reverse proxy. This integration should only be used if specified by Epsilon."
+          },
+          {
+            "type": "RADIO",
             "name": "integrationType",
             "displayName": "Integration Type",
             "radioItems": [
@@ -492,7 +510,14 @@ const onFailure = function() {
 if (data.integrationType === 0 || !data.integrationType) {
   if (queryPermission('inject_script', baseURL)) {
     //Javascript Tag
-    finalURL = baseURL + '/profile/visit/js/1_0' + queryStringParameters;
+    if (data.enableEpsilonRP == 1) {
+      //Epsilon-RP tag
+      finalURL = baseURL + queryStringParameters + '&dtm_ept=initial';
+    } 
+    else {
+      //Standard UST tag
+      finalURL = baseURL + '/profile/visit/js/1_0' + queryStringParameters;
+    }
     injectScript(finalURL, onSuccess, onFailure);
   } else {
     log('Invalid permission to load script from: ', baseURL);
