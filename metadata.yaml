@@ -16,9 +16,11 @@ homepage: "https://www.epsilon.com"
 documentation: "https://www.epsilon.com"
 versions:
   # Latest version
+  - sha: 592ce33e505eff649729d2420093b49565f6cd9a
+    changeNotes: GPP Consent String field
+  # Older versions
   - sha: a4853ccc306f5efd855e98afefafecb2bef393dc
     changeNotes: Added support for Epsilon-RP PHP integrations
-  # Older versions
   - sha: fa63ef00efcc6e7b8b5bff45b9c2f814315ac87e
     changeNotes: Update logo and ui enhancements related to variables 
   - sha: 3b4dc17af1657e1d7bd8430546e51859e406f195
