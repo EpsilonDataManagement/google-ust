@@ -1,4 +1,4 @@
-___TERMS_OF_SERVICE___
+﻿___TERMS_OF_SERVICE___
 
 By creating or modifying this file you agree to Google Tag Manager's Community
 Template Gallery Developer Terms of Service available at
@@ -14,7 +14,11 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "Epsilon Site Tag",
-  "categories": ["CONVERSIONS", "MARKETING", "ATTRIBUTION"],
+  "categories": [
+    "CONVERSIONS",
+    "MARKETING",
+    "ATTRIBUTION"
+  ],
   "brand": {
     "id": "github.com_EpsilonDataManagement",
     "displayName": "EpsilonDataManagement",
@@ -146,6 +150,13 @@ ___TEMPLATE_PARAMETERS___
             "displayName": "Consent String",
             "simpleValueType": true,
             "help": "GDPR consent string."
+          },
+          {
+            "type": "TEXT",
+            "name": "gpp_string",
+            "displayName": "GPP String",
+            "simpleValueType": true,
+            "help": "GPP consent string."
           },
           {
             "type": "PARAM_TABLE",
@@ -397,7 +408,7 @@ const getUrl = require('getUrl');
 
 // Declare Variables
 let baseURL = 'https://' + data.host;
-const allowedQueryParameters = ['dtm_cid', 'dtm_cmagic', 'dtm_fid', 'dtm_promo_id', 'dtm_email_hash', 'dtm_user_id', 'dtm_cookie_id', 'dtmc_department', 'dtmc_category', 'dtmc_sub_category', 'dtmc_product_id', 'dtmc_brand', 'dtmc_upc', 'dtmc_mpn', 'dtmc_transaction_id', 'dtm_conv_val', 'dtm_conv_curr', 'dtmc_conv_type', 'dtmc_conv_store_location', 'dtm_items', 'dtmc_tcf_string'];
+const allowedQueryParameters = ['dtm_cid', 'dtm_cmagic', 'dtm_fid', 'dtm_promo_id', 'dtm_email_hash', 'dtm_user_id', 'dtm_cookie_id', 'dtmc_department', 'dtmc_category', 'dtmc_sub_category', 'dtmc_product_id', 'dtmc_brand', 'dtmc_upc', 'dtmc_mpn', 'dtmc_transaction_id', 'dtm_conv_val', 'dtm_conv_curr', 'dtmc_conv_type', 'dtmc_conv_store_location', 'dtm_items', 'dtmc_tcf_string', 'gpp_string'];
 
 const cv = getContainerVersion();
 const cachebusterValue = cv.containerId + '-' + cv.version + '-' + getTimestampMillis();
@@ -668,3 +679,5 @@ scenarios: []
 ___NOTES___
 
 Created on 11/29/2022, 2:32:00 PM
+
+
